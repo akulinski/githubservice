@@ -33,3 +33,11 @@ This project allows to display information about specific user. Number of his re
 ```aidl
 4. ./mvnw spring-boot:run
 ```
+
+
+### Examples
+
+
+```aidl
+    curl http://localhost:8080/statistics/akulinski
+```
