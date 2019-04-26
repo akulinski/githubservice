@@ -7,7 +7,7 @@ import java.util.Map;
 
 @Data
 public class ProfileStatistics {
-    private Integer repositoriesCount;
+    private Integer repositoriesCount = 0;
     Map<String, Long> languages;
 
     public ProfileStatistics() {

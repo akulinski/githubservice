@@ -3,6 +3,7 @@ package com.akulinski.githubservice.core.services;
 import com.akulinski.githubservice.core.domain.ProfileStatistics;
 import com.akulinski.githubservice.core.domain.RepositoryDTO;
 import com.akulinski.githubservice.core.feign.RepositoryClient;
+import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -22,25 +23,30 @@ public class UserStatisticsService {
 
     public ProfileStatistics getProfileStatistics(String username) {
 
-        log.debug(String.format("getProfileStatistics|username: %s", username));
+        try {
+            log.debug(String.format("getProfileStatistics|username: %s", username));
 
-        ProfileStatistics profileStatistics = new ProfileStatistics();
+            ProfileStatistics profileStatistics = new ProfileStatistics();
 
-        final List<RepositoryDTO> allRepos = repositoryClient.getAllRepos(username);
+            final List<RepositoryDTO> allRepos = repositoryClient.getAllRepos(username);
 
-        HashMap<String, Long> languageBytesStatsSum = new HashMap<>();
+            HashMap<String, Long> languageBytesStatsSum = new HashMap<>();
 
-        allRepos.forEach(repositoryDTO -> {
+            allRepos.forEach(repositoryDTO -> {
 
-            log.debug(String.format("parsing repository: %s", repositoryDTO.getName()));
+                log.debug(String.format("parsing repository: %s", repositoryDTO.getName()));
 
-            addBytesInRepoToSum(username, languageBytesStatsSum, repositoryDTO);
-        });
+                addBytesInRepoToSum(username, languageBytesStatsSum, repositoryDTO);
+            });
 
-        profileStatistics.setRepositoriesCount(allRepos.size());
-        profileStatistics.setLanguages(languageBytesStatsSum);
+            profileStatistics.setRepositoriesCount(allRepos.size());
+            profileStatistics.setLanguages(languageBytesStatsSum);
 
-        return profileStatistics;
+            return profileStatistics;
+        } catch (FeignException feign) {
+            log.error(feign.getLocalizedMessage());
+        }
+        return new ProfileStatistics();
     }
 
     private void addBytesInRepoToSum(String username, HashMap<String, Long> languageBytesStatsSum, RepositoryDTO repositoryDTO) {
