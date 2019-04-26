@@ -3,3 +3,8 @@
 feignconf:
   username: ${GITHUB_USER}
   password: ${GITHUB_PASSWORD}
+
+
+logging:
+  level:
+    com.akulinski: debug
