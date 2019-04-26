@@ -26,6 +26,9 @@ This project allows to display information about specific user. Number of his re
 ```
 
 
+
+(For windows use mvnw.cmd)
+
 ```aidl
 3. ./mvnw clean install
 ```
