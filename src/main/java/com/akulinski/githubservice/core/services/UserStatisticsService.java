@@ -38,7 +38,7 @@ public class UserStatisticsService {
         });
 
         profileStatistics.setRepositoriesCount(allRepos.size());
-        profileStatistics.setLanguageBytesMap(languageBytesStatsSum);
+        profileStatistics.setLanguages(languageBytesStatsSum);
 
         return profileStatistics;
     }

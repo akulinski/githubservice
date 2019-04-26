@@ -8,9 +8,9 @@ import java.util.Map;
 @Data
 public class ProfileStatistics {
     private Integer repositoriesCount;
-    Map<String, Long> languageBytesMap;
+    Map<String, Long> languages;
 
     public ProfileStatistics() {
-        this.languageBytesMap = new HashMap<>();
+        this.languages = new HashMap<>();
     }
 }
