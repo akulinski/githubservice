@@ -1,6 +1,5 @@
 package com.akulinski.githubservice.core.controllers;
 
-import com.akulinski.githubservice.core.domain.ProfileStatistics;
 import com.akulinski.githubservice.core.services.UserStatisticsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,8 +17,6 @@ public class StatisticsController {
 
     @GetMapping("/statistics/{username}")
     public ResponseEntity getStatisticsForUser(@PathVariable String username) {
-        ProfileStatistics profileStatistics = new ProfileStatistics();
-        profileStatistics.setRepositoriesCount(userStatisticsService.getRepositoryCount(username));
-        return ResponseEntity.ok(profileStatistics);
+        return ResponseEntity.ok(userStatisticsService.getProfileStatistics(username));
     }
 }
