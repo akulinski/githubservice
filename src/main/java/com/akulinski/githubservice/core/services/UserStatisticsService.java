@@ -41,6 +41,9 @@ public class UserStatisticsService {
 
             profileStatistics.setRepositoriesCount(allRepos.size());
             profileStatistics.setLanguages(languageBytesStatsSum);
+            profileStatistics.setUserName(username);
+            String avatar = repositoryClient.getUserProfile(username).get("avatar_url");
+            profileStatistics.setAvatarLink(avatar);
 
             return profileStatistics;
         } catch (FeignException feign) {

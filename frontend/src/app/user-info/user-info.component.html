@@ -1,0 +1,31 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Basic repository Statistics</mat-card-title>
+    <mat-card-subtitle *ngIf="data">{{data.userName}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <img *ngIf="data" mat-card-image src="{{data.avatarLink}}"
+       onerror="this.src='https://github.githubassets.com/images/modules/logos_page/Octocat.png'">
+
+  <mat-card-content>
+
+    <div *ngIf="data">
+
+      <ul>
+        <li *ngFor="let language of data.languages | keyvalue">
+
+          <p>{{language.key}} : {{language.value}}</p>
+
+        </li>
+      </ul>
+
+
+    </div>
+
+
+  </mat-card-content>
+
+
+</mat-card>
+

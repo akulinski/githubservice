@@ -7,8 +7,11 @@ import java.util.Map;
 
 @Data
 public class ProfileStatistics {
+
+    private String userName;
     private Integer repositoriesCount = 0;
-    Map<String, Long> languages;
+    private Map<String, Long> languages;
+    private String avatarLink;
 
     public ProfileStatistics() {
         this.languages = new HashMap<>();

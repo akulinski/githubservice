@@ -13,5 +13,9 @@ public interface RepositoryClient {
     List<RepositoryDTO> getAllRepos(@Param("user") String user);
 
     @RequestLine("GET /repos/{user}/{repo}/languages")
-    Map<String,String> getLanguageBytesForRepo(@Param("user") String user, @Param("repo") String repo);
+    Map<String, String> getLanguageBytesForRepo(@Param("user") String user, @Param("repo") String repo);
+
+    @RequestLine("GET /users/{user}")
+    Map<String, String> getUserProfile(@Param("user") String user);
+
 }
